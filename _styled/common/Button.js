@@ -7,7 +7,7 @@ const Button = styled.button`
   font-size: 14px;
   font-weight: 400;
   line-height: inherit;
-  border: 1px solid ${color.primary.original};
+  border: 2px solid ${color.primary.original};
   border-radius: 4px;
   background-color: ${color.primary.original};
   color: ${color.primary.text};
