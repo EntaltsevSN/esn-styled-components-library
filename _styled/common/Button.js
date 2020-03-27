@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { color } from '../config/Styles';
 
 const Button = styled.button`
   display: inline-flex;
@@ -6,9 +7,10 @@ const Button = styled.button`
   font-size: 14px;
   font-weight: 400;
   line-height: inherit;
-  border: 1px solid #ddd;
+  border: 1px solid ${color.primary.original};
   border-radius: 4px;
-  background-color: #ddd;
+  background-color: ${color.primary.original};
+  color: ${color.primary.text};
   cursor: pointer;
   letter-spacing: .25px;
   white-space: nowrap;
@@ -19,17 +21,48 @@ const Button = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #bbb;
-    border-color: #bbb;
+    background-color: ${color.primary.hover};
+    border-color: ${color.primary.hover};
   }
 
-  ${props => Object.keys(props).map(prop => (props[prop] === 'bordered') && `
-    &,
-    &:hover,
-    &:focus {
-      background-color: transparent;
+  ${props => {
+    switch(props.type) {
+      case 'bordered':
+        return `
+          &,
+          &:hover,
+          &:focus {
+            background-color: transparent;
+          }
+          & {
+            color: ${color.primary.original};
+          }
+          &:hover,
+          &:focus {
+            color: ${color.primary.hover}
+          }
+        `;
+      case 'link':
+        return `
+          &,
+          &:hover,
+          &:focus {
+            background-color: transparent;
+            border-color: transparent;
+          }
+          & {
+            color: ${color.primary.original};
+          }
+          &:hover,
+          &:focus {
+            color: ${color.primary.hover}
+          }
+        `;
+      default:
+        break;
     }
-  `)}
+  }
+  }
 `;
 
 export default Button;
